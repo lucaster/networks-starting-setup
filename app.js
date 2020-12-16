@@ -16,9 +16,7 @@ app.use(bodyParser.json());
 
 app.get('/favorites', async (req, res) => {
   const favorites = await Favorite.find();
-  res.status(200).json({
-    favorites: favorites,
-  });
+  res.status(200).json({ favorites });
 });
 
 /**

@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const favoriteSchema = new Schema({
-  type: 'movie' | 'character',
+  type: String, // "movie" | "character",
   /**
    * Key
    */
