@@ -8,7 +8,7 @@ const Favorite = require('./models/favorite');
 const port = 3000;
 const moviesUri = 'https://swapi.dev/api/films';
 const peopleUri = 'https://swapi.dev/api/people';
-const mongoDbUrl = 'mongodb://localhost:27017/swfavorites';
+const mongoDbUrl = 'mongodb://host.docker.internal:27017/swfavorites';
 
 const app = express();
 
@@ -79,8 +79,6 @@ app.get('/people', async (req, res) => {
   }
 });
 
-app.listen(port);
-/*
 mongoose.connect(
   mongoDbUrl,
   { useNewUrlParser: true },
@@ -93,4 +91,3 @@ mongoose.connect(
     }
   }
 );
-*/
