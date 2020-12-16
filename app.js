@@ -25,37 +25,37 @@ app.get('/favorites', async (req, res) => {
  * Add a new Favorite
  */
 app.post('/favorites', async (req, res) => {
-  const favName = req.body.name;
-  const favType = req.body.type;
-  const favUrl = req.body.url;
+  const fav = req.body;
+  const name = fav.name;
+  const type = fav.type;
+  const url  = fav.url;
 
+  // Should not already exist:
   try {
-    await findFavoriteByName(favType, favName);
-  } catch (error) {
+    await findFavoriteByName(type, name);
+  }
+  catch (error) {
     return res.status(500).json({ message: error.message });
   }
 
-  const favorite = new Favorite({
-    name: favName,
-    type: favType,
-    url: favUrl,
-  });
+  const newFav = new Favorite({ name, type, url });
 
   try {
-    await favorite.save();
+    await newFav.save();
     res
       .status(201)
-      .json({ message: 'Favorite saved!', favorite: favorite.toObject() });
-  } catch (error) {
+      .json({ message: 'Favorite saved!', favorite: fav.toObject() });
+  }
+  catch (error) {
     res.status(500).json({ message: 'Something went wrong.' });
   }
 });
 
-async function findFavoriteByName(favType, favName) {
-  if (favType !== 'movie' && favType !== 'character') {
+async function findFavoriteByName(type, name) {
+  if (type !== 'movie' && type !== 'character') {
     throw new Error('"type" should be "movie" or "character"!');
   }
-  const existingFav = await Favorite.findOne({ name: favName });
+  const existingFav = await Favorite.findOne({ name });
   if (existingFav) {
     throw new Error('Favorite exists already!');
   }
@@ -79,14 +79,18 @@ app.get('/people', async (req, res) => {
   }
 });
 
+app.listen(port);
+/*
 mongoose.connect(
   mongoDbUrl,
   { useNewUrlParser: true },
   (err) => {
     if (err) {
       console.log(err);
-    } else {
+    } 
+    else {
       app.listen(port);
     }
   }
 );
+*/
