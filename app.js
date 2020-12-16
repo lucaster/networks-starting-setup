@@ -24,6 +24,7 @@ app.get('/favorites', async (req, res) => {
  */
 app.post('/favorites', async (req, res) => {
   const fav = req.body;
+  console.log(fav);
   const name = fav.name;
   const type = fav.type;
   const url  = fav.url;
@@ -45,7 +46,7 @@ app.post('/favorites', async (req, res) => {
       .json({ message: 'Favorite saved!', favorite: fav.toObject() });
   }
   catch (error) {
-    res.status(500).json({ message: 'Something went wrong.' });
+    res.status(500).json({ message: 'Something went wrong.', error: error });
   }
 });
 
