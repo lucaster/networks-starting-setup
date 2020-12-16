@@ -9,6 +9,6 @@ const favoriteSchema = new Schema({
   url: String
 }); 
 
-const Favorite = model('Favorite', favoriteSchema);
+const Favorite = model('Favorite', favoriteSchema, 'favorites');
 
 module.exports = Favorite;
