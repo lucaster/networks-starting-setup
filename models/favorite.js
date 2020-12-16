@@ -1,13 +1,13 @@
 const { Schema, model } = require('mongoose');
 
 const favoriteSchema = new Schema({
-  type: "movie" | "character",
+  type: 'movie' | 'character',
   /**
    * Key
    */
   name: String,
-  url: String
-}); 
+  url: String,
+});
 
 const Favorite = model('Favorite', favoriteSchema, 'favorites');
 
