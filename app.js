@@ -41,9 +41,11 @@ app.post('/favorites', async (req, res) => {
 
   try {
     await newFav.save();
+    console.log('Saved', newFav);
     res
       .status(201)
-      .json({ message: 'Favorite saved!', favorite: fav.toObject() });
+      .json({ message: 'Favorite saved!', favorite: newFav.toObject() });
+    console.log('response');
   }
   catch (error) {
     res.status(500).json({ message: 'Something went wrong.', error: error });
