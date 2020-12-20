@@ -8,7 +8,7 @@ const Favorite = require('./models/favorite');
 const port = 3000;
 const moviesUri = 'https://swapi.dev/api/films';
 const peopleUri = 'https://swapi.dev/api/people';
-const mongoDbUrl = 'mongodb://host.docker.internal:27017/swfavorites';
+const mongoDbUrl = 'mongodb://172.17.0.2:27017/swfavorites';
 
 const app = express();
 
